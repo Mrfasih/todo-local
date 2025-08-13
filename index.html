@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: black;
+        color: white;
+    }
+</style>
+<body>
+    <input type="text" id="inputData">
+    <button onclick="fun()">ADD</button>
+    <button onclick="ok()">ALL CLEAR</button>
+    <div id="local">
+        <ul id="todoList"></ul>
+    </div>
+    
+</body>
+<script>
+let todoMap = new Map();
+
+function loadTodos() {
+    const stored = localStorage.getItem('todos');
+    if (stored) {
+        const todosArray = JSON.parse(stored);
+        todoMap.clear();
+        todosArray.forEach((item, index) => {
+            todoMap.set(index, item);
+        });
+    }
+    renderTodos();
+}
+
+function saveTodos() {
+    const todosArray = Array.from(todoMap.values());
+    localStorage.setItem('todos', JSON.stringify(todosArray));
+}
+
+function renderTodos() {
+    const todoList = document.getElementById('todoList');
+    todoList.innerHTML = '';
+    
+    todoMap.forEach((item, key) => {
+        const li = document.createElement('li');
+        li.textContent = item + ' ';
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Delete';
+        delBtn.onclick = function() { deleteTodo(key); };
+        li.appendChild(delBtn);
+        todoList.appendChild(li);
+    });
+}
+
+function fun() {
+    const input = document.getElementById('inputData');
+    const value = input.value.trim();
+    if (!value) return;
+    
+    const newKey = todoMap.size;
+    todoMap.set(newKey, value);
+    saveTodos();
+    renderTodos();
+    input.value = '';
+}
+
+function deleteTodo(key) {
+    todoMap.delete(key);
+    
+    const tempMap = new Map();
+    let newKey = 0;
+    todoMap.forEach((value) => {
+        tempMap.set(newKey, value);
+        newKey++;
+    });
+    todoMap = tempMap;
+    saveTodos();
+    renderTodos();
+}
+
+function ok() {
+    todoMap.clear();
+    localStorage.clear();
+    renderTodos();
+}
+
+
+</script>
+</html>
