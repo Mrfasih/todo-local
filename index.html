@@ -6,22 +6,222 @@
     <title>Document</title>
 </head>
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html, body {
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
     body{
-        background-color: black;
+        background-color: rgb(12, 11, 11);
         color: white;
+    }
+    .main {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 50px;
+    }
+    input, button {
+        margin: 5px;
+        padding: 10px;
+        font-size: 16px;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin: 5px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    button {
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: darkred;
+    }
+    #local {
+        margin-top: 20px;
+    }
+    #todoList {
+        padding: 0;
+    }
+    #todoList li {
+        background-color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+    }
+    #todoList li button {
+        background-color: #ff4d4d;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    #todoList li button:hover {
+        background-color: #ff1a1a;
+    }
+    #inputData {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #222;
+        color: white;
+    }
+    #inputData:focus {
+        outline: none;
+        border-color: #ff4d4d;
+    }
+    button:focus {
+        outline: none;
+        box-shadow: 0 0 5px #ff4d4d;
+    }
+    #local {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #633b3b;
+        border-radius: 5px;
+    }
+    #local h2 {
+        margin: 0 0 10px;
+        color: #ff4d4d;
+    }
+   
+    #todoList li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #555;
+    }
+    #todoList li:last-child {
+        border-bottom: none;
+    }
+    #todoList li button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #todoList li button:hover {
+        background-color: #ff1a1a;
+    }
+    #todoList li button:focus {
+        outline: none;
+        box-shadow: 0 0 5px #ff4d4d;
+    }
+    #inputData {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #222;
+        color: white;
+    }
+    #inputData:focus {
+        outline: none;
+        border-color: #ff4d4d;
+    }
+    button:focus {
+        outline: none;
+        box-shadow: 0 0 5px #ff4d4d;
+    }
+    #inputData::placeholder {
+        color: #888;
+    }
+    #inputData:focus::placeholder {
+        color: #ccc;
+    }
+    button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #ff1a1a;
+    }       
+    button:focus {
+        outline: none;
+        box-shadow: 0 0 5px #ff4d4d;
+    }
+    #todoList {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 10px;
+    }
+    #todoList li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #555;
+    }
+    #todoList li:last-child {
+        border-bottom: none;
+    }
+    #todoList li button {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #todoList li button:hover {
+        background-color: #ff1a1a;
+    }
+    #todoList li button:focus {
+        outline: none;
+        box-shadow: 0 0 5px #ff4d4d;
+    }
+    #inputData {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #222;
+        color: white;
+    }
+    h1 {
+        color: #ff4d4d;
+        margin: 10px 0 20px 0;
     }
 </style>
 <body>
-    <input type="text" id="inputData">
-    <button onclick="fun()">ADD</button>
-    <button onclick="ok()">ALL CLEAR</button>
-    <div id="local">
-        <ul id="todoList"></ul>
-    </div>
     
+    <div class="main">
+        <nav>
+        <h1>Todo-List-Local</h1>
+        <h1>Drag-Drop-List</h1></nav>
+    <div><input type="text" id="inputData">
+    <button onclick="fun()">ADD</button></div>
+    
+    </div>
+    <div id="local">
+        <ul id="todoList" ondrop="drop(event)" ondragover="allowDrop(event)">
+        </ul>
+    </div>
+    <button onclick="ok()">ALL CLEAR</button>
 </body>
 <script>
 let todoMap = new Map();
+let draggedKey = null;
 
 function loadTodos() {
     const stored = localStorage.getItem('todos');
@@ -43,23 +243,61 @@ function saveTodos() {
 function renderTodos() {
     const todoList = document.getElementById('todoList');
     todoList.innerHTML = '';
-    
+
     todoMap.forEach((item, key) => {
         const li = document.createElement('li');
         li.textContent = item + ' ';
+        li.draggable = true;
+        li.dataset.key = key;
+
+        li.ondragstart = dragStart;
+        li.ondragover = dragOver;
+        li.ondrop = dropItem;
+
+
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
-        delBtn.onclick = function() { deleteTodo(key); };
+        delBtn.onclick = function () { deleteTodo(key); };
         li.appendChild(delBtn);
+
         todoList.appendChild(li);
     });
+}
+
+function dragStart(ev) {
+    draggedKey = ev.target.dataset.key;
+}
+
+function dragOver(ev) {
+    ev.preventDefault();
+}
+
+function dropItem(ev) {
+    ev.preventDefault();
+    const targetKey = ev.target.dataset.key;
+
+    if (targetKey === undefined || targetKey === draggedKey)
+    return;
+
+    const todosArray = Array.from(todoMap.values());
+
+    const draggedItem = todosArray.splice(draggedKey, 1)[0];
+    todosArray.splice(targetKey, 0, draggedItem);
+
+    todoMap.clear();
+    todosArray.forEach((value, index) => {
+        todoMap.set(index, value);
+    });
+
+    saveTodos();
+    renderTodos();
 }
 
 function fun() {
     const input = document.getElementById('inputData');
     const value = input.value.trim();
     if (!value) return;
-    
+
     const newKey = todoMap.size;
     todoMap.set(newKey, value);
     saveTodos();
@@ -69,7 +307,7 @@ function fun() {
 
 function deleteTodo(key) {
     todoMap.delete(key);
-    
+
     const tempMap = new Map();
     let newKey = 0;
     todoMap.forEach((value) => {
@@ -86,7 +324,5 @@ function ok() {
     localStorage.clear();
     renderTodos();
 }
-
-
 </script>
 </html>
