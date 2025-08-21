@@ -11,197 +11,64 @@
         padding: 0;
         box-sizing: border-box;
     }
-    html, body {
-        height: 100%;
-        font-family: Arial, sans-serif;
-    }
-    body{
-        background-color: rgb(12, 11, 11);
-        color: white;
-    }
-    .main {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        margin-top: 50px;
-    }
-    input, button {
-        margin: 5px;
-        padding: 10px;
-        font-size: 16px;
-    }
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-    li {
-        margin: 5px 0;
-        display: flex;
-        justify-content: space-between;
-    }
-    button {
-        background-color: red;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: darkred;
-    }
-    #local {
-        margin-top: 20px;
-    }
-    #todoList {
-        padding: 0;
-    }
-    #todoList li {
-        background-color: #333;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 5px;
-    }
-    #todoList li button {
-        background-color: #ff4d4d;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-    #todoList li button:hover {
-        background-color: #ff1a1a;
-    }
-    #inputData {
-        width: 300px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #222;
-        color: white;
-    }
-    #inputData:focus {
-        outline: none;
-        border-color: #ff4d4d;
-    }
-    button:focus {
-        outline: none;
-        box-shadow: 0 0 5px #ff4d4d;
-    }
-    #local {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #633b3b;
-        border-radius: 5px;
-    }
-    #local h2 {
-        margin: 0 0 10px;
-        color: #ff4d4d;
-    }
-   
-    #todoList li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #555;
-    }
-    #todoList li:last-child {
-        border-bottom: none;
-    }
-    #todoList li button {
-        background-color: #ff4d4d;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    #todoList li button:hover {
-        background-color: #ff1a1a;
-    }
-    #todoList li button:focus {
-        outline: none;
-        box-shadow: 0 0 5px #ff4d4d;
-    }
-    #inputData {
-        width: 300px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #222;
-        color: white;
-    }
-    #inputData:focus {
-        outline: none;
-        border-color: #ff4d4d;
-    }
-    button:focus {
-        outline: none;
-        box-shadow: 0 0 5px #ff4d4d;
-    }
-    #inputData::placeholder {
-        color: #888;
-    }
-    #inputData:focus::placeholder {
-        color: #ccc;
-    }
-    button {
-        background-color: #ff4d4d;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-    button:hover {
-        background-color: #ff1a1a;
-    }       
-    button:focus {
-        outline: none;
-        box-shadow: 0 0 5px #ff4d4d;
-    }
-    #todoList {
-        max-height: 300px;
-        overflow-y: auto;
-        margin-top: 10px;
-    }
-    #todoList li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #555;
-    }
-    #todoList li:last-child {
-        border-bottom: none;
-    }
-    #todoList li button {
-        background-color: #ff4d4d;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    #todoList li button:hover {
-        background-color: #ff1a1a;
-    }
-    #todoList li button:focus {
-        outline: none;
-        box-shadow: 0 0 5px #ff4d4d;
-    }
-    #inputData {
-        width: 300px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #222;
-        color: white;
-    }
-    h1 {
-        color: #ff4d4d;
-        margin: 10px 0 20px 0;
-    }
+.main {
+    width: 100%;
+    max-width: 100%;
+    background-color: cadetblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border: 4px solid black;
+}
+nav {
+    padding: 10px;
+}
+input{
+    border: 2px solid black;
+    padding: 2px;
+}
+input:hover{
+    border: 2px solid green;
+    background-color: khaki;
+}
+nav h1 {
+    color:#fff;
+    font-size: 30px;
+    text-align: center;
+}
+button {
+    padding: 5px 7px;
+    background-color: black;
+    border: 2px solid white;
+    color: #fff;
+}
+input{
+    padding: 6px;
+}
+button:hover{
+    background-color: darkblue;
+    color: #fff;
+}
+li {
+    list-style: none;
+    padding: 10px;
+    display: flex;;
+    align-items: center;
+
+}
+span{
+    cursor: pointer;
+    color: #fff;
+}
+#local{
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 4px solid black;
+}
 </style>
 <body>
     
@@ -235,6 +102,10 @@ function loadTodos() {
     renderTodos();
 }
 
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
 function saveTodos() {
     const todosArray = Array.from(todoMap.values());
     localStorage.setItem('todos', JSON.stringify(todosArray));
@@ -246,23 +117,73 @@ function renderTodos() {
 
     todoMap.forEach((item, key) => {
         const li = document.createElement('li');
-        li.textContent = item + ' ';
         li.draggable = true;
         li.dataset.key = key;
+        li.style.cursor = 'move';
+        li.style.backgroundColor = 'rgb(34, 92, 97)';
+        li.style.color = '#fff';
+
+        const imG = document.createElement('img');
+        imG.src ="../img/plus.png";
+        imG.style.width = '30px';
+        imG.style.marginRight = '10px';
+        imG.style.color = 'white';
+        li.appendChild(imG);
+
+        const textSpan = document.createElement('span');
+        textSpan.textContent = item;
+        textSpan.style.flex = '1';
+        textSpan.style.marginRight = '10px';
+        const delBtn = document.createElement('button');
+        delBtn.textContent = 'Delete';
+        delBtn.onclick = function () { deleteTodo(key); };
+        const img = document.createElement("img");
+        img.src = "";
+
+        delBtn.style.backgroundColor = 'darkred';
+        delBtn.style.border = '2px solid white';
+        delBtn.style.padding = '5px';
+        delBtn.style.marginLeft = '10px';
+
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.onclick = function () {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = item;
+
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = 'Save';
+            saveBtn.onclick = function () {
+                todoMap.set(key, input.value);
+                saveTodos();
+                renderTodos();
+            };
+            li.appendChild(img);
+
+            li.innerHTML = '';
+            li.appendChild(input);
+            li.appendChild(saveBtn);
+        };
+        editBtn.style.backgroundColor = 'darkblue';
+        editBtn.style.border = '2px solid white';
+        editBtn.style.padding = '5px';
+        editBtn.style.marginLeft = '10px';
 
         li.ondragstart = dragStart;
         li.ondragover = dragOver;
         li.ondrop = dropItem;
 
-
-        const delBtn = document.createElement('button');
-        delBtn.textContent = 'Delete';
-        delBtn.onclick = function () { deleteTodo(key); };
+        li.appendChild(textSpan);
         li.appendChild(delBtn);
+
+
+        li.appendChild(editBtn);
 
         todoList.appendChild(li);
     });
 }
+
 
 function dragStart(ev) {
     draggedKey = ev.target.dataset.key;
@@ -305,6 +226,7 @@ function fun() {
     input.value = '';
 }
 
+
 function deleteTodo(key) {
     todoMap.delete(key);
 
@@ -324,5 +246,6 @@ function ok() {
     localStorage.clear();
     renderTodos();
 }
+window.onload = loadTodos;
 </script>
 </html>
