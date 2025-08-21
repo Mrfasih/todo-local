@@ -52,6 +52,7 @@ button:hover{
     color: #fff;
 }
 li {
+    margin: 1px;
     list-style: none;
     padding: 10px;
     display: flex;;
@@ -69,6 +70,14 @@ span{
     flex-direction: column;
     border: 4px solid black;
 }
+.op{
+    background-color:rgb(34, 92, 97) ;
+    border: 2px solid black;
+    margin: 2px;
+}
+.op:hover{
+background-color:  #a0cf60;
+}
 </style>
 <body>
     
@@ -84,7 +93,7 @@ span{
         <ul id="todoList" ondrop="drop(event)" ondragover="allowDrop(event)">
         </ul>
     </div>
-    <button onclick="ok()">ALL CLEAR</button>
+    <button class="op" onclick="ok()">ALL CLEAR</button>
 </body>
 <script>
 let todoMap = new Map();
@@ -124,7 +133,7 @@ function renderTodos() {
         li.style.color = '#fff';
 
         const imG = document.createElement('img');
-        imG.src ="../img/plus.png";
+        imG.src ="./img/plus.png";
         imG.style.width = '30px';
         imG.style.marginRight = '10px';
         imG.style.color = 'white';
